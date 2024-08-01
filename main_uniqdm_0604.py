@@ -64,7 +64,8 @@ def main(args):
     os.makedirs(img_dir, exist_ok=True)
     os.makedirs(model_dir, exist_ok=True)
     optim = torch.optim.Adam(ddpm.parameters(), lr=lrate)
-    snr_mod_maps = get_class_info(dataset)
+    snr_mod_maps = get_class_info(dataset)  # ['-2_128QAM', '-2_32PSK', '-2_BPSK', '-2_GMSK', '-2_OQPSK',], 
+
     for epoch in range(1, args.n_epoch+1):
         print(f'.. epoch {epoch}')
         ddpm.train()
@@ -113,6 +114,7 @@ def main(args):
 
 if __name__ == "__main__":
     print(f">> test in 240604, cuda availability : {torch.cuda.is_available()}")
+
     _start_time = time.time()
 
     parser = argparse.ArgumentParser()
